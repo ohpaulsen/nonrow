@@ -1,5 +1,5 @@
 #include <vector>
-#include <cords.h>
+#include "cords.h"
 
 namespace nonrow
 {
@@ -14,7 +14,7 @@ namespace nonrow
         //players turn or computers turn
         bool turn;
     public:
-        game_state(std::vector<cords> player, std::vector<board>);
+        game_state(std::vector<cords> player, std::vector<cords> board);
         void print(); 
     };
 }

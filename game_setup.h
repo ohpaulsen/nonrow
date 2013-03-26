@@ -13,7 +13,7 @@ class game_setup{
 
 public:
     game_setup(int onrows);
-    void start();
+    void whostart();
     void gen_table();
 };
 
