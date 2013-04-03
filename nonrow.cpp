@@ -6,6 +6,7 @@
 #include "class_window.h"
 #include "class_cords.h"
 #include "class_player.h"
+#include "class_nonrow.h"
 using namespace std;
 //using namespace nonrow;
 
@@ -20,7 +21,6 @@ int main()
     string myInt;
     cin >> myInt;
     int myIntInt = atoi(myInt.c_str());
-    nonrow::game_setup g(myIntInt,p);
-
+    nonrow::nonrow_game g(myIntInt,p);
     return 0;
 }

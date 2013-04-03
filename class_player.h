@@ -11,6 +11,7 @@ class player{
 
  public:
     player(std::string);
+    player();
     void setWins(int);
     void setLoss(int);
     void setDraw(int);

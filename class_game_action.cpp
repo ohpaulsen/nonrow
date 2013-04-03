@@ -19,8 +19,9 @@ game_action::actiontype game_action::getType()
 
 
 
-void game_action::print()
+cords game_action::print()
 {
+    splitcords.clear();
     cout << "Write the cords you want to set your symbol example: 'a 1'" << endl;
     string myString = "";
     cin >> myString;
@@ -35,8 +36,13 @@ void game_action::print()
    }
    else
    {
-
+       cords c('1','2','X');
    }
+}
+
+cords game_action::takeAction()
+{
+    return print();
 }
 
 int game_action::vectorLength()

@@ -1,9 +1,11 @@
 #include "class_window.h"
+#include "class_cords.h"
 #include <stdio.h>
+#include <vector>
 using namespace std;
 using namespace nonrow;
 
-window::window(int wi, int hi, int ri)
+window::window(int wi, int hi, int ri,vector<cords> b)
 {
     this->w = wi;
     this->h = hi;

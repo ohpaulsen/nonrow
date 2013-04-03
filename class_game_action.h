@@ -10,7 +10,8 @@ namespace nonrow {
     public:
     enum actiontype{put,pass};
     actiontype getType();
-    void print();
+    cords print();
+    cords takeAction();
     game_action();
     int vectorLength();
     actiontype type;

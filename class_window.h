@@ -1,3 +1,5 @@
+#include <vector>
+#include "class_cords.h"
 #ifndef WINDOW
 #define WINDOW
 
@@ -9,7 +11,7 @@ class window
     int h;
     int onrow;
     public:
-    window(int,int,int);
+    window(int,int,int,std::vector<cords>);
     void print();
 
 };

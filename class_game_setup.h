@@ -1,4 +1,6 @@
 #include "class_player.h"
+#include <vector>
+#include "class_cords.h"
 #ifndef GAMESETUP
 #define GAMESETUP
 
@@ -11,10 +13,10 @@ class game_setup{
     bool start;
     int width;
     int height;
-
+    std::vector<cords> Vc;
 public:
-    game_setup(int onrows, player p);
-    void whostart();
+    game_setup(int onrows, player p,std::vector<cords> V);
+    bool whostart();
     void gen_table();
 };
 
