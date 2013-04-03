@@ -1,5 +1,5 @@
 all: classes
-	g++ window.cpp -o window -lncurses
+	g++ nonrow.cpp class*.o -o nonrow
 
 classes:
-	g++ -c window.cpp
+	g++ -c class*.cpp
