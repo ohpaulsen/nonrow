@@ -10,10 +10,10 @@ class player{
     std::string nick;
 
  public:
+    player(std::string);
     void setWins(int);
     void setLoss(int);
     void setDraw(int);
-    void setNick(std::string);
     int getWins();
     int getLoss();
     int getDraw();

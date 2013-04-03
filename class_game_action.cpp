@@ -21,7 +21,7 @@ game_action::actiontype game_action::getType()
 
 void game_action::print()
 {
-    cout << "Write the cords you want to set your symbol eksample: 'a 1'" << endl;
+    cout << "Write the cords you want to set your symbol example: 'a 1'" << endl;
     string myString = "";
     cin >> myString;
     string l = "";
@@ -32,6 +32,10 @@ void game_action::print()
    {
        cout << "invalid input" << endl;
        this->print();
+   }
+   else
+   {
+
    }
 }
 

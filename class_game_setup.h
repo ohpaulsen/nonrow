@@ -1,3 +1,4 @@
+#include "class_player.h"
 #ifndef GAMESETUP
 #define GAMESETUP
 
@@ -12,7 +13,7 @@ class game_setup{
     int height;
 
 public:
-    game_setup(int onrows);
+    game_setup(int onrows, player p);
     void whostart();
     void gen_table();
 };

@@ -4,6 +4,11 @@
 using namespace std;
 using namespace nonrow;
 
+player::player(string inick)
+{
+    this->nick = inick;
+}
+
 void player::setWins(int w)
 {
    this->wins = w;

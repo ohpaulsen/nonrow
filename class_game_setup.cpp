@@ -1,11 +1,12 @@
 #include "class_game_setup.h"
 #include "class_window.h"
+#include "class_player.h"
 #include <algorithm>
 #include <ctime>
 using namespace nonrow;
 using namespace std;
 
-game_setup::game_setup(int onrows)
+game_setup::game_setup(int onrows,player p)
 {
     this->on_row = onrows;
     game_setup::whostart();
