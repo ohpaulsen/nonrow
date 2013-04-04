@@ -30,4 +30,9 @@ Oppgaven er prøvd helt opp til 100x100 uten å feile på skalerbarhet.
 dataflytdigram:
 https://docs.google.com/drawings/d/1js77f5YYiiuyqwRDRWL2w4ocJcWLy8I1lmA-rAoroQA/edit?usp=sharing
 
+i ett senere tidspunkt ville jeg også begynt å brukt gamestate for å beholde wins, loss, draw på players. 
 
+Ville også laget en klasse av AI, for da kunne 2 Ais, spilt mot hverandre. 
+
+
+Det som desverre har dratt meg tilbake er tidspresset. Så dette får jeg heller vise bedre i prosjektoppgaven!
