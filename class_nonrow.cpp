@@ -48,7 +48,7 @@ void nonrow_game::playround(){
             return;
         }turn = true;
     }
-    if(Bwinner == true)
+    if(Bwinner == false)
         playround();
 
 }
