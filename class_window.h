@@ -10,9 +10,11 @@ class window
     int w;
     int h;
     int onrow;
+    std::vector<cords> b;
     public:
     window(int,int,int,std::vector<cords>);
     void print();
+    char getCord(int,int);
 
 };
 }

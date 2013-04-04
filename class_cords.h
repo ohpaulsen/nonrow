@@ -6,8 +6,8 @@
 
 namespace nonrow{
 
-    typedef char y;
-    typedef char x;
+    typedef int y;
+    typedef int x;
     typedef char s;
 
 class cords{

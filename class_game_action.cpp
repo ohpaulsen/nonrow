@@ -4,6 +4,8 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <stdio.h>
+#include <stdlib.h>
 using namespace std;
 using namespace nonrow;
 
@@ -21,32 +23,34 @@ game_action::actiontype game_action::getType()
 
 cords game_action::print()
 {
-    splitcords.clear();
-    cout << "Write the cords you want to set your symbol example: 'a 1'" << endl;
+    char en = 0;
+    char to = 0;
+    cout << "Write the cords on the y-axis you want to set your symbol example: '1'" << endl;
     string myString = "";
+    string myString2 = "";
     cin >> myString;
-    string l = "";
-    stringstream ss(myString); 
-    while ( ss >> l)
-        this->splitcords.push_back(l);
-   if(this->vectorLength() != 2)
+    cout << "Write the cords on the x-axis you want to set you symbol. example: '2'" << endl;
+    cin >> myString2;
+   if(!myString2.length() == 1 && !myString.length() == 1) 
    {
+       en = atoi(myString.c_str());
+       to = atoi(myString.c_str());
+       if(!isdigit(en) && !isdigit(to))
+       {
        cout << "invalid input" << endl;
        this->print();
+       }
    }
    else
    {
-       cords c('1','2','X');
+       cords c(en,to,'X');
+       cout << "cord.." << c.xcord() << endl; 
+       return c;
    }
 }
 
 cords game_action::takeAction()
 {
     return print();
-}
-
-int game_action::vectorLength()
-{
-    return this->splitcords.size();
 }
 
