@@ -38,6 +38,9 @@ void nonrow_game::playround(){
         
         cout << "AI moves..." << endl;
         cords aim = a.aiMove(nonrow);
+        while (!this->valid_cords(aim)) {
+            aim = a.aiMove(nonrow);
+        }
         if(this->valid_cords(aim)){
         this->boardV.push_back(aim);
         }

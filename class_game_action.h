@@ -18,7 +18,6 @@ namespace nonrow {
     int vectorLength();
     cords aiMove(int);
     actiontype type;
-    std::vector<std::string> splitcords;
     };
 
 

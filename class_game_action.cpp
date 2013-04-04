@@ -44,7 +44,7 @@ int game_action::intLength(int value)
 
 }
 
-cords aiMove(int nrow)
+cords game_action::aiMove(int nrow)
 {
     srand(time(NULL));
     int r = rand() % nrow;
