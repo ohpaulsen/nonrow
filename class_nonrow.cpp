@@ -12,8 +12,8 @@ nonrow_game::nonrow_game(int onrow,player p){
     this->me = p;
     this->nonrow = onrow;
     this->Bwinner = false;
-    playround();
     this->who_start();
+    playround();
 }
 
 void nonrow_game::playround(){
@@ -24,18 +24,16 @@ void nonrow_game::playround(){
         cords c = a.takeAction();
         if(this->valid_cords(c)){
         this->boardV.push_back(c);
-        if(winner(c) == true)
-        {
+        if(winner(c) == true){
             me.setWins(1);
+            this->Bwinner = true;
             return;
-        }
-        turn = false;
+        }turn = false;
         }else{
             cout << "There is allready a symbol on the cord or you trying to set cords outside the board" << endl;
             this->playround();
         }
     }else{
-        
         cout << "AI moves..." << endl;
         cords aim = a.aiMove(nonrow);
         while (!this->valid_cords(aim)) {
@@ -44,14 +42,14 @@ void nonrow_game::playround(){
         if(this->valid_cords(aim)){
         this->boardV.push_back(aim);
         }
-        if(winner(aim) == true)
-        {
+        if(winner(aim) == true){
             me.setLoss(1);
+            this->Bwinner = true;
             return;
-        }
-        turn = true;
+        }turn = true;
     }
-    playround();
+    if(Bwinner == true)
+        playround();
 
 }
 
@@ -71,8 +69,7 @@ bool nonrow_game::valid_cords(cords c){
 
 
 //this quits the game if someone wins.
-bool nonrow_game::winner(cords c)
-{
+bool nonrow_game::winner(cords c){
     if(this->boardV.size() <= nonrow){
     this->Bwinner = false;
     return false;
@@ -81,9 +78,7 @@ bool nonrow_game::winner(cords c)
     int tmpu =0;
     char symbol = 0;
     int teller = 0;
-
-    for(int i=0;i < 4; i++)
-    {
+    for(int i=0;i < 4; i++){
         if(i==0)//Checks diagonal from the last inserted cords
         {
             tmpx = c.ycord();
@@ -92,8 +87,7 @@ bool nonrow_game::winner(cords c)
             {
                     if(checkCord(tmpx+p,c.xcord(),symbol))
                         teller++;
-                    else
-                    {
+                    else{
                         break;
                     }
             }
