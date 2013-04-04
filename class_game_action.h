@@ -13,6 +13,8 @@ namespace nonrow {
     cords print();
     cords takeAction();
     game_action();
+    int getInt(char);
+    int intLength(int);
     int vectorLength();
     actiontype type;
     std::vector<std::string> splitcords;

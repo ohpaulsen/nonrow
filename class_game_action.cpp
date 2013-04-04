@@ -5,6 +5,7 @@
 #include <sstream>
 #include <vector>
 #include <stdio.h>
+#include <ctype.h>
 #include <stdlib.h>
 using namespace std;
 using namespace nonrow;
@@ -19,34 +20,47 @@ game_action::actiontype game_action::getType()
     return this->type;
 }
 
+int game_action::getInt(char x)
+{
+    cout << "write the cords on the " << x << "-axis you want to set your symbol. example '1'" << endl;
+    string input = "";
+    int tmp;
+    cin >> input;
+    stringstream s(input);
+    if(s >> tmp)
+    {
+        return tmp;
+    }
+    return 0;
+}
 
+int game_action::intLength(int value)
+{
+    int l=1;
+    while(value>9){l++;value/=10;}
+    return l;
+
+}
 
 cords game_action::print()
 {
-    char en = 0;
-    char to = 0;
-    cout << "Write the cords on the y-axis you want to set your symbol example: '1'" << endl;
-    string myString = "";
-    string myString2 = "";
-    cin >> myString;
-    cout << "Write the cords on the x-axis you want to set you symbol. example: '2'" << endl;
-    cin >> myString2;
-   if(!myString2.length() == 1 && !myString.length() == 1) 
-   {
-       en = atoi(myString.c_str());
-       to = atoi(myString.c_str());
-       if(!isdigit(en) && !isdigit(to))
-       {
+    string output;
+    string output2;
+    int en = 0;
+    int to = 0;
+    en = getInt('x');
+    to = getInt('y');
+    if(intLength(en) == 1 && intLength(to) == 1 && en != 0 && to != 0)
+    {
+        cords c(to,en,'x');
+        cout << "cord.. " << c.xcord() << " " << c.ycord() << endl;
+        return c;
+    }
+    else
+      {
        cout << "invalid input" << endl;
        this->print();
        }
-   }
-   else
-   {
-       cords c(en,to,'X');
-       cout << "cord.." << c.xcord() << endl; 
-       return c;
-   }
 }
 
 cords game_action::takeAction()
