@@ -7,6 +7,8 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
+#include <ctime>
+#include <algorithm>
 using namespace std;
 using namespace nonrow;
 
@@ -42,6 +44,16 @@ int game_action::intLength(int value)
 
 }
 
+cords aiMove(int nrow)
+{
+    srand(time(NULL));
+    int r = rand() % nrow;
+    srand(time(NULL));
+    int r2 = rand() % nrow;
+    cords ai(r,r2,'o');
+    return ai;
+}
+
 cords game_action::print()
 {
     string output;
@@ -53,7 +65,6 @@ cords game_action::print()
     if(intLength(en) == 1 && intLength(to) == 1 && en != 0 && to != 0)
     {
         cords c(to,en,'x');
-        cout << "cord.. " << c.xcord() << " " << c.ycord() << endl;
         return c;
     }
     else

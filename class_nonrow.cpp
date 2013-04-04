@@ -8,8 +8,7 @@
 using namespace std;
 using namespace nonrow;
 
-nonrow_game::nonrow_game(int onrow,player p)
-{
+nonrow_game::nonrow_game(int onrow,player p){
     this->me = p;
     this->nonrow = onrow;
     this->Bwinner = false;
@@ -17,8 +16,7 @@ nonrow_game::nonrow_game(int onrow,player p)
     this->who_start();
 }
 
-void nonrow_game::playround()
-{
+void nonrow_game::playround(){
     game_setup g(nonrow,me,this->boardV);
     game_action a;
     if(turn == true)
@@ -26,34 +24,43 @@ void nonrow_game::playround()
         cords c = a.takeAction();
         if(this->valid_cords(c)){
         this->boardV.push_back(c);
-        winner(c);
+        if(winner(c) == true)
+        {
+            me.setWins(1);
+            return;
+        }
         turn = false;
         }else{
             cout << "There is allready a symbol on the cord or you trying to set cords outside the board" << endl;
             this->playround();
         }
     }else{
-        //AI MOVE
+        
         cout << "AI moves..." << endl;
+        cords aim = a.aiMove(nonrow);
+        if(this->valid_cords(aim)){
+        this->boardV.push_back(aim);
+        }
+        if(winner(aim) == true)
+        {
+            me.setLoss(1);
+            return;
+        }
         turn = true;
     }
     playround();
 
 }
 
-bool nonrow_game::valid_cords(cords c)
-{
+bool nonrow_game::valid_cords(cords c){
     //This function need to check if the cords are in the vector allready and its inside the board.
     for(vector<cords>::size_type i = 0; i!= this->boardV.size(); i++)
     {
-        //cout << "er inne i for" << endl;
-        if(c.xcord() == this->boardV[i].xcord() && c.ycord() == this->boardV[i].ycord())
-        {
+        if(c.xcord() == this->boardV[i].xcord() && c.ycord() == this->boardV[i].ycord()){
             return false;
         }
     }
-    if(c.ycord() > this->nonrow || c.xcord() > this->nonrow)
-    {
+    if(c.ycord() > this->nonrow || c.xcord() > this->nonrow){
         return false;
     }
     return true;
@@ -80,78 +87,96 @@ bool nonrow_game::winner(cords c)
             symbol = c.scord();
             for(int p=1; tmpx < nonrow; p++)
             {
-                    //cout << tmpx+p << " " << c.ycord() << symbol << endl;
                     if(checkCord(tmpx+p,c.xcord(),symbol))
                         teller++;
                     else
                     {
-                       // cout << "teller1 " << teller << endl;
                         break;
                     }
             }
-            for(int p=0; nonrow > tmpx; p++)
-            {
-                if(checkCord(tmpx-p,c.ycord(),symbol))
-                {
+            for(int p=0; nonrow > tmpx; p++){
+                if(checkCord(tmpx-p,c.ycord(),symbol)){
                     teller++;
-                }
-                else
-                {
-                    //cout << "teller " << teller << endl;
+                }else{
                     break;
                 }
-                //while(checkCord(i,c.ycord(),symbol) == true){
-                //    teller++;
-                //}
-
-            }
-            if(teller == nonrow)
-            {
+            }if(teller == nonrow){
                 cout << "WINNER" << endl;
                 return true;
             }
-        }
-        if(i == 1)//Checks loddrett from the last insterted cords
-        {
+        }if(i == 1){
             teller = 0;
             tmpx = c.xcord();
             symbol = c.scord();
-            for(int p=1; tmpx < nonrow; p++)
-            {
+            for(int p=1; tmpx < nonrow; p++){
                 if(checkCord(c.ycord(),tmpx+p,symbol))
                     teller++;
                 else{
-                
-                    cout << "teller1" << teller << endl;
                     break;
                 }
             }
-            for(int p=0; nonrow > tmpx; p++)
-            {
+            for(int p=0; nonrow > tmpx; p++){
                 if(checkCord(c.ycord(),tmpx-p,symbol))
                     teller++;
                 else{
-                    cout << "teller " << teller << endl;
                     break;
                 }
-            }
-            if(teller == nonrow)
-            {
+            }if(teller == nonrow){
                 cout << "WINNER" << endl;
                 return true;
             }
         }
         if(i == 2)//Checks diagonalt to left - right from last insterted cords
         {
-            //return true;
-        }
-        if(i == 3)//checks diagonalt Right to left from last insterted cords
+            teller = 0;
+            tmpx = c.xcord();
+            tmpu = c.ycord();
+            symbol = c.scord();
+            for(int p=1; tmpx < nonrow; p++)
+            {
+                if(checkCord(tmpu+p,tmpx+p,symbol))
+                    teller++;
+                else{
+                break;
+                }
+            }
+            for(int p=0; nonrow > tmpx;p++){
+                if(checkCord(tmpu-p,tmpx+p,symbol))
+                    teller++;
+                else{
+                break;
+                }
+            }
+            if(teller == nonrow){
+                cout << "WINNER" << endl;
+                return true;
+            }
+
+        }if(i == 3)//checks diagonalt Right to left from last insterted cords
         {
-            //return true;
+            teller = 0;
+            tmpx = c.xcord();
+            tmpu = c.ycord();
+            symbol = c.scord();
+            for(int p=1; tmpx < nonrow; p++){
+                if(checkCord(tmpu-p,tmpx+p,symbol))
+                    teller++;
+                else{
+                break;
+                }
+            }
+            for(int p=0;nonrow > tmpx;p++){
+                if(checkCord(tmpu+p,tmpx+p,symbol))
+                    teller++;
+                else{
+                break;
+                }
+            }if (teller == nonrow) {
+                cout << "WINNER" << endl;
+                return true;
+            }
         }
     }
-   cout << "Ferdig med å telle.. " << teller << endl; 
-
 }
 
 bool nonrow_game::checkCord(int x, int y, char z)
@@ -159,14 +184,9 @@ bool nonrow_game::checkCord(int x, int y, char z)
     for(vector<cords>::size_type i=0; i!= this->boardV.size();i++)
     {
         cords tmp(y,x,z);
-        cout << this->boardV[i].xcord() << this->boardV[i].ycord()  << boardV[i].scord() << endl;
-        cout << tmp.xcord() << tmp.ycord() << tmp.scord();
-        if(tmp.scord() ==  boardV[i].scord() && tmp.ycord() == boardV[i].ycord() && tmp.xcord() == boardV[i].xcord())
-        {
-            cout << "_FANT__EN____" << endl;
+        if(tmp.scord() ==  boardV[i].scord() && tmp.ycord() == boardV[i].ycord() && tmp.xcord() == boardV[i].xcord()){
             return true;
         }
-        cout << "____" << endl;
     }
     return false;
 
