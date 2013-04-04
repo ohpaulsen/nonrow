@@ -17,11 +17,11 @@ window::window(int wi, int hi, int ri,vector<cords> bi)
 
 void window::print()
 {
-    for (int i=1; i < h; i++) { 
+    for (int i=0; i < h; i++) { 
             printf("\n"); // + this->count[i]);
-        for (int p=1; p < w; p++) {
+        for (int p=0; p < w; p++) {
             char symbol = '_';
-            symbol = getCord(p,i);
+            symbol = getCord(p+1,i+1);
             cout << "|_" << symbol << "_|";
         }
     }
