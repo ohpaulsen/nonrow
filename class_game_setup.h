@@ -16,7 +16,6 @@ class game_setup{
     std::vector<cords> Vc;
 public:
     game_setup(int onrows, player p,std::vector<cords> V);
-    bool whostart();
     void gen_table();
 };
 

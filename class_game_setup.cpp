@@ -10,7 +10,6 @@ game_setup::game_setup(int onrows,player p,vector<cords> V)
 {
     this->on_row = onrows;
     this->Vc = V;
-    game_setup::whostart();
     this->gen_table();
 }
 
