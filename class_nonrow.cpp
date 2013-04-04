@@ -81,11 +81,11 @@ bool nonrow_game::winner(cords c)
             for(int p=1; tmpx < nonrow; p++)
             {
                     //cout << tmpx+p << " " << c.ycord() << symbol << endl;
-                    if(checkCord(tmpx+p,c.ycord(),symbol))
+                    if(checkCord(tmpx+p,c.xcord(),symbol))
                         teller++;
                     else
                     {
-                        cout << "teller1 " << teller << endl;
+                       // cout << "teller1 " << teller << endl;
                         break;
                     }
             }
@@ -97,7 +97,7 @@ bool nonrow_game::winner(cords c)
                 }
                 else
                 {
-                    cout << "teller " << teller << endl;
+                    //cout << "teller " << teller << endl;
                     break;
                 }
                 //while(checkCord(i,c.ycord(),symbol) == true){
@@ -106,12 +106,40 @@ bool nonrow_game::winner(cords c)
 
             }
             if(teller == nonrow)
+            {
                 cout << "WINNER" << endl;
                 return true;
+            }
         }
         if(i == 1)//Checks loddrett from the last insterted cords
         {
-            //return true;
+            teller = 0;
+            tmpx = c.xcord();
+            symbol = c.scord();
+            for(int p=1; tmpx < nonrow; p++)
+            {
+                if(checkCord(c.ycord(),tmpx+p,symbol))
+                    teller++;
+                else{
+                
+                    cout << "teller1" << teller << endl;
+                    break;
+                }
+            }
+            for(int p=0; nonrow > tmpx; p++)
+            {
+                if(checkCord(c.ycord(),tmpx-p,symbol))
+                    teller++;
+                else{
+                    cout << "teller " << teller << endl;
+                    break;
+                }
+            }
+            if(teller == nonrow)
+            {
+                cout << "WINNER" << endl;
+                return true;
+            }
         }
         if(i == 2)//Checks diagonalt to left - right from last insterted cords
         {
